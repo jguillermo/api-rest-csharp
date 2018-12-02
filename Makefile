@@ -20,18 +20,22 @@ build: ## build image to dev: make build
 
 start: ## up docker containers: make up
 	make build
-	docker-compose -f container/docker-compose.yml up -d
-	docker-compose -f container/docker-compose.yml ps
+	docker rm -f $(CONTAINER_NAME) || true
+	docker-compose -f container/docker-compose.yml run -p 8080:80 --name $(CONTAINER_NAME) -d backend
 
 ssh: ## Connect to container for ssh protocol : make ssh
 	docker exec -it $(CONTAINER_NAME) sh
 
 log: ## Show container logs make : make log
-	docker-compose -f container/docker-compose.yml logs -f
+	#docker-compose -f container/docker-compose.yml logs -f backend
+	docker logs -f $(CONTAINER_NAME)
 
 ## Tools docker##
 docker-kill: ## Execute migrate : make migrate
 	docker rm -f $$(docker ps -aq)
+
+docker-rmi-dangling: ## Execute migrate : make migrate
+	docker rmi $$(docker images -qf "dangling=true")
 
 ## Target Help ##
 help:
