@@ -3,6 +3,8 @@ services:
 
   backend:
     image: $IMAGE_DEV
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Development
     depends_on: 
       - mysql
 
