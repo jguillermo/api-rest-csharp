@@ -1,27 +1,27 @@
-﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace application.Controllers
+
+namespace application.ApiRest.User
 {
-    [Route("api/[controller]")]
+    [Route("v1/users")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value11", "value22h" };
+            var user = new Context.User.Domain.User {Id = "123"};
+            return new string[] {user.Id, "valor2"};
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            var user = new Context.User.Domain.User {Id = "123"};
+            return user.Id;
         }
 
         // POST api/values
