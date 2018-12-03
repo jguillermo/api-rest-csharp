@@ -12,15 +12,15 @@ namespace application.ApiRest.User
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var user = new Context.User.Domain.User {Id = "123"};
-            return new string[] {user.Id, "valor2"};
+            var user = Context.User.Domain.User.create("123", "jose");
+            return new string[] {user.Id, user.Name};
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            var user = new Context.User.Domain.User {Id = "123"};
+            var user = Context.User.Domain.User.create("123", "jose");
             return user.Id;
         }
 
