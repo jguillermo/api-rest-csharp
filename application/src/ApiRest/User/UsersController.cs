@@ -12,7 +12,7 @@ namespace application.ApiRest.User
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var user = Context.User.Domain.User.create("123", "jose");
+            var user = Context.User.Domain.User.Create("123", "jose");
             return new string[] {user.Id, user.Name};
         }
 
@@ -20,7 +20,7 @@ namespace application.ApiRest.User
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            var user = Context.User.Domain.User.create("123", "jose");
+            var user = Context.User.Domain.User.Create("123", "jose");
             return user.Id;
         }
 

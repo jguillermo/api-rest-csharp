@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using application.Context.User.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +27,14 @@ namespace application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UserDbContext>(options =>
+                options.UseMySQL("server=localhost;port=3306;database=flash_db;uid=root;password=1234")
+                    .EnableSensitiveDataLogging(true)
+                    .UseLoggerFactory(new LoggerFactory().AddConsole(
+                        (category, level) => level == LogLevel.Information &&
+                                             category == DbLoggerCategory.Database.Command.Name, true)));
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -39,6 +49,7 @@ namespace application
             {
                 app.UseHsts();
             }
+
             app.UseMvc();
         }
     }
