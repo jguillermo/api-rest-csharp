@@ -8,8 +8,8 @@ using application.Context.User.Domain;
 namespace application.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20181205171445_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181205221521_Migration_181205_171507")]
+    partial class Migration_181205_171507
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

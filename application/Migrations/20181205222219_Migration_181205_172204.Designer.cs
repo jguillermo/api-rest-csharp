@@ -8,8 +8,8 @@ using application.Context.User.Domain;
 namespace application.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20181205172525_UserLastName")]
-    partial class UserLastName
+    [Migration("20181205222219_Migration_181205_172204")]
+    partial class Migration_181205_172204
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,8 +21,6 @@ namespace application.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("LastName");
 
                     b.Property<string>("Name");
 

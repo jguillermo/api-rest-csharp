@@ -2,12 +2,12 @@
 
 namespace application.Migrations
 {
-    public partial class UserLastName : Migration
+    public partial class Migration_181205_170743 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "LastName",
+                name: "LastNamesff",
                 table: "Users",
                 nullable: true);
         }
@@ -15,7 +15,7 @@ namespace application.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "LastName",
+                name: "LastNamesff",
                 table: "Users");
         }
     }
